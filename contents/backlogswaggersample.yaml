@@ -1,0 +1,303 @@
+swagger: '2.0'
+info: {version: 1.0.0, title: BacklogIssueManagement, description: BacklogIssueManagement}
+host: xxx.backlog.jp
+basePath: /
+schemes: [https]
+consumes: []
+produces: [application/json]
+paths:
+  /api/v2/issues:
+    get:
+      summary: FindIssues
+      description: FindIssues
+      operationId: FindIssues
+      parameters:
+      - {name: apiKey, in: query, type: string, required: true}
+      - {name: 'projectId[]', in: query, type: string, required: true}
+      - {name: 'assigneeId[]', in: query, type: string, required: true}
+      - name: statusId[]
+        in: query
+        type: array
+        collectionFormat: multi
+        items: {type: integer}
+      responses:
+        default:
+          description: default
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id: {type: integer, format: int32, description: id}
+                projectId: {type: integer, format: int32, description: projectId}
+                issueKey: {type: string, description: issueKey}
+                keyId: {type: integer, format: int32, description: keyId}
+                issueType:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    projectId: {type: integer, format: int32, description: projectId}
+                    name: {type: string, description: name}
+                    color: {type: string, description: color}
+                    displayOrder: {type: integer, format: int32, description: displayOrder}
+                  description: issueType
+                summary: {type: string, description: summary}
+                description: {type: string, description: description}
+                resolution: {type: string, description: resolution}
+                priority:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    name: {type: string, description: name}
+                  description: priority
+                status:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    projectId: {type: integer, format: int32, description: projectId}
+                    name: {type: string, description: name}
+                    color: {type: string, description: color}
+                    displayOrder: {type: integer, format: int32, description: displayOrder}
+                  description: status
+                assignee:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    userId: {type: string, description: userId}
+                    name: {type: string, description: name}
+                    roleType: {type: integer, format: int32, description: roleType}
+                    lang: {type: string, description: lang}
+                    mailAddress: {type: string, description: mailAddress}
+                    nulabAccount:
+                      type: object
+                      properties:
+                        nulabId: {type: string, description: nulabId}
+                        name: {type: string, description: name}
+                        uniqueId: {type: string, description: uniqueId}
+                      description: nulabAccount
+                    keyword: {type: string, description: keyword}
+                  description: assignee
+                category:
+                  type: array
+                  items: {}
+                  description: category
+                versions:
+                  type: array
+                  items: {}
+                  description: versions
+                milestone:
+                  type: array
+                  items: {}
+                  description: milestone
+                startDate: {type: string, description: startDate}
+                dueDate: {type: string, description: dueDate}
+                estimatedHours: {type: string, description: estimatedHours}
+                actualHours: {type: string, description: actualHours}
+                parentIssueId: {type: string, description: parentIssueId}
+                createdUser:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    userId: {type: string, description: userId}
+                    name: {type: string, description: name}
+                    roleType: {type: integer, format: int32, description: roleType}
+                    lang: {type: string, description: lang}
+                    mailAddress: {type: string, description: mailAddress}
+                    nulabAccount:
+                      type: object
+                      properties:
+                        nulabId: {type: string, description: nulabId}
+                        name: {type: string, description: name}
+                        uniqueId: {type: string, description: uniqueId}
+                      description: nulabAccount
+                    keyword: {type: string, description: keyword}
+                  description: createdUser
+                created: {type: string, description: created}
+                updatedUser:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    userId: {type: string, description: userId}
+                    name: {type: string, description: name}
+                    roleType: {type: integer, format: int32, description: roleType}
+                    lang: {type: string, description: lang}
+                    mailAddress: {type: string, description: mailAddress}
+                    nulabAccount: {type: string, description: nulabAccount}
+                    keyword: {type: string, description: keyword}
+                  description: updatedUser
+                updated: {type: string, description: updated}
+                customFields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id: {type: integer, format: int32, description: id}
+                      fieldTypeId: {type: integer, format: int32, description: fieldTypeId}
+                      name: {type: string, description: name}
+                      value:
+                        type: array
+                        items: {}
+                        description: value
+                      otherValue: {type: string, description: otherValue}
+                  description: customFields
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id: {type: integer, format: int32, description: id}
+                      name: {type: string, description: name}
+                      size: {type: integer, format: int32, description: size}
+                      createdUser:
+                        type: object
+                        properties:
+                          id: {type: integer, format: int32, description: id}
+                          userId: {type: string, description: userId}
+                          name: {type: string, description: name}
+                          roleType: {type: integer, format: int32, description: roleType}
+                          lang: {type: string, description: lang}
+                          mailAddress: {type: string, description: mailAddress}
+                          nulabAccount:
+                            type: object
+                            properties:
+                              nulabId: {type: string, description: nulabId}
+                              name: {type: string, description: name}
+                              uniqueId: {type: string, description: uniqueId}
+                            description: nulabAccount
+                          keyword: {type: string, description: keyword}
+                        description: createdUser
+                      created: {type: string, description: created}
+                  description: attachments
+                sharedFiles:
+                  type: array
+                  items: {}
+                  description: sharedFiles
+                stars:
+                  type: array
+                  items: {}
+                  description: stars
+  /api/v2/projects/BLDE_V2/statuses:
+    get:
+      summary: GetIssueStatuses
+      description: GetIssueStatuses
+      operationId: GetIssueStatuses
+      parameters:
+      - {name: apiKey, in: query, type: string, required: true}
+      responses:
+        default:
+          description: default
+          schema: {}
+  /api/v2/issues/{issueId}/comments:
+    get:
+      summary: GetIssueComments
+      description: GetIssueComments
+      operationId: GetIssueComments
+      parameters:
+      - {name: apiKey, in: query, type: string, required: true}
+      - {name: issueId, in: path, type: string, required: true}
+      responses:
+        default:
+          description: default
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id: {type: integer, format: int32, description: id}
+                content: {type: string, description: content}
+                changeLog:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field: {type: string, description: field}
+                      newValue: {type: string, description: newValue}
+                      originalValue: {type: string, description: originalValue}
+                      attachmentInfo: {type: string, description: attachmentInfo}
+                      attributeInfo: {type: string, description: attributeInfo}
+                      notificationInfo:
+                        type: object
+                        properties:
+                          type: {type: string, description: type}
+                        description: notificationInfo
+                  description: changeLog
+                createdUser:
+                  type: object
+                  properties:
+                    id: {type: integer, format: int32, description: id}
+                    userId: {type: string, description: userId}
+                    name: {type: string, description: name}
+                    roleType: {type: integer, format: int32, description: roleType}
+                    lang: {type: string, description: lang}
+                    mailAddress: {type: string, description: mailAddress}
+                    nulabAccount:
+                      type: object
+                      properties:
+                        nulabId: {type: string, description: nulabId}
+                        name: {type: string, description: name}
+                        uniqueId: {type: string, description: uniqueId}
+                      description: nulabAccount
+                    keyword: {type: string, description: keyword}
+                  description: createdUser
+                created: {type: string, description: created}
+                updated: {type: string, description: updated}
+                stars:
+                  type: array
+                  items: {}
+                  description: stars
+                notifications:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id: {type: integer, format: int32, description: id}
+                      alreadyRead: {type: boolean, description: alreadyRead}
+                      reason: {type: integer, format: int32, description: reason}
+                      user:
+                        type: object
+                        properties:
+                          id: {type: integer, format: int32, description: id}
+                          userId: {type: string, description: userId}
+                          name: {type: string, description: name}
+                          roleType: {type: integer, format: int32, description: roleType}
+                          lang: {type: string, description: lang}
+                          mailAddress: {type: string, description: mailAddress}
+                          nulabAccount:
+                            type: object
+                            properties:
+                              nulabId: {type: string, description: nulabId}
+                              name: {type: string, description: name}
+                              uniqueId: {type: string, description: uniqueId}
+                            description: nulabAccount
+                          keyword: {type: string, description: keyword}
+                        description: user
+                      resourceAlreadyRead: {type: boolean, description: resourceAlreadyRead}
+                  description: notifications
+  /api/v2/projects/BLDE_V2:
+    get:
+      summary: GetProject
+      description: GetProject
+      operationId: GetProject
+      parameters:
+      - {name: apiKey, in: query, type: string, required: true}
+      responses:
+        default:
+          description: default
+          schema: {}
+  /api/v2/users/myself:
+    get:
+      summary: GetOwnUser
+      description: GetOwnUser
+      operationId: GetOwnUser
+      parameters:
+      - {name: apiKey, in: query, type: string, required: true}
+      responses:
+        default:
+          description: default
+          schema: {}
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions: {}
+security: []
+tags: []
